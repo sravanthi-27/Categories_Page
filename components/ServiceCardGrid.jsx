@@ -62,7 +62,7 @@ function ServiceCardGrid() {
           className="h-[273.778px] w-full rounded-t-[17.111px] rounded-b-[3.422px] bg-cover bg-center"
           style={{ backgroundImage: `url(${item.img})` }}
         ></div>
-
+      <div className="px-4 py-3 flex flex-col flex-grow">
         <p className="text-[#414141] font-montserrat text-[14px] font-medium leading-normal truncate mt-[7px]">
           {item.title}
         </p>
@@ -84,6 +84,7 @@ function ServiceCardGrid() {
             {item.location}
           </span>
         </div>
+      </div>
       </div>
     ))}
   </div>
