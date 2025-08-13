@@ -1,7 +1,7 @@
 import React from "react";
 import locationIcon from "../assets/mdi_location.svg";
 
-// Import images
+// Import images (keep your existing imports here)
 import img1 from "../assets/The Rusty Spur Salon.jpg";
 import img2 from "../assets/The Gilded Rose.jpg";
 import img3 from "../assets/The Velvet Lounge.jpg";
@@ -23,7 +23,6 @@ import img18 from "../assets/Trailblazers Retreat.jpg";
 import img19 from "../assets/Boulder Creek.jpg";
 import img20 from "../assets/Ranch House.jpg";
 
-// Card data with unique titles
 const data = [
   { title: "Hair Treatments & Salons", subtitle: "The Rusty Spur Salon", location: "Sector 21, Gurugram, India", img: img1 },
   { title: "Hair Treatments & Salons", subtitle: "The Gilded Rose", location: "Sector 21, Gurugram, India", img: img2 },
@@ -49,58 +48,97 @@ const data = [
 
 function ServiceCardGrid() {
   return (
-    <section className="w-full bg-white pt-[45.75px] pb-[50px]">
-      {/* Breadcrumb */}
-      <div className="container mx-auto px-[85px] mb-[37px]">
-        <p className="text-[#666] font-montserrat text-[14px] font-medium leading-normal">
-          Skin, Hair & Beauty / Hair Treatments & Salons
+    <section className="w-full bg-white pt-6 pb-12 sm:pt-[45.75px] sm:pb-[50px]">
+      {/* Desktop Version (unchanged) */}
+      <div className="hidden sm:block">
+<div className="container mx-auto px-4 sm:px-[80px]">
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[17.97px] justify-center">
+    {data.map((item, idx) => (
+      <div
+        key={idx}
+        className="flex flex-col rounded-lg bg-white shadow-[0_3.422px_15.999px_rgba(0,0,0,0.10)] transform transition duration-300 hover:scale-[1.03] hover:shadow-[0_6px_20px_rgba(0,0,0,0.15) max-w-[305px] max-h-[400px]]"
+      >
+        <div
+          className="h-[273.778px] w-full rounded-t-[17.111px] rounded-b-[3.422px] bg-cover bg-center"
+          style={{ backgroundImage: `url(${item.img})` }}
+        ></div>
+
+        <p className="text-[#414141] font-montserrat text-[14px] font-medium leading-normal truncate mt-[7px]">
+          {item.title}
         </p>
+        <p className="text-[#210303] font-montserrat text-[20px] font-bold leading-normal truncate mt-[7px]">
+          {item.subtitle}
+        </p>
+
+        <div className="flex items-center gap-[8.556px] mt-3">
+          <img
+            src={locationIcon}
+            alt="location"
+            className="w-[14px] h-[14px]"
+            style={{
+              filter:
+                "invert(28%) sepia(0%) saturate(0%) hue-rotate(181deg) brightness(95%) contrast(90%)",
+            }}
+          />
+          <span className="text-ellipsis overflow-hidden whitespace-nowrap text-[#4A4A4A] font-montserrat text-[13.689px] font-normal leading-normal">
+            {item.location}
+          </span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div className="mt-[35.5px] flex justify-center">
+    <button className="inline-flex h-[60px] px-[44px] py-[20px] justify-center items-center gap-[10px] rounded-[10px] bg-[#121212] text-white font-montserrat text-[20px] font-medium leading-[110%] hover:bg-[#333] transition-colors">
+      Load More
+    </button>
+  </div>
+</div>
+
       </div>
 
-      {/* Grid Container */}
-      <div className="container mx-auto px-[80px]">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[17.97px]">
+      {/* Mobile Version - Fixed Layout */}
+      <div className="block sm:hidden px-4">
+        <div className="mb-4">
+          <p className="text-[#666] font-montserrat text-xs font-medium">
+            Skin, Hair & Beauty / Hair Treatments & Salons
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
           {data.map((item, idx) => (
             <div
               key={idx}
-              className="flex flex-col w-[305px] h-[400px] p-[16.256px_17.967px] rounded-[17.111px] bg-white shadow-[0_3.422px_15.999px_rgba(0,0,0,0.10)] transform transition duration-300 hover:scale-[1.03] hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)]"
+              className="flex flex-col rounded-lg bg-white shadow-sm overflow-hidden"
+              style={{ boxShadow: "0 1.882px 8.799px rgba(0, 0, 0, 0.10)" }}
             >
-              {/* Image */}
-              <div
-                className="h-[273.778px] w-full rounded-t-[17.111px] rounded-b-[3.422px] bg-cover bg-center"
-                style={{ backgroundImage: `url(${item.img})` }}
-              ></div>
-
-              {/* Title */}
-              <p className="text-[#414141] font-montserrat text-[14px] font-medium leading-[125%] truncate mt-[7px]">
-                {item.title}
-              </p>
-              <p className="text-[#210303] font-montserrat text-[20px]  font-bold leading-[125%] truncate mt-[7px]">
-                {item.subtitle}
-              </p>
-
-              {/* Location */}
-              <div className="flex items-center gap-[8.556px] mt-3">
+              <div className="relative" style={{ paddingBottom: "100%" }}>
                 <img
-                  src={locationIcon}
-                  alt="location"
-                  className="w-[14px] h-[14px]"
-                  style={{
-                    filter:
-                      "invert(28%) sepia(0%) saturate(0%) hue-rotate(181deg) brightness(95%) contrast(90%)",
-                  }}
+                  src={item.img}
+                  alt={item.subtitle}
+                  className="absolute top-0 left-0 w-full h-full object-cover"
+                  style={{ objectPosition: "center", display: "block" }}
                 />
-                <span className="text-ellipsis overflow-hidden whitespace-nowrap text-[#4A4A4A] font-montserrat text-[13.689px] font-normal leading-[125%]">
-                  {item.location}
-                </span>
+              </div>
+
+              <div className="p-2 space-y-1">
+                <p className="text-[#414141] font-montserrat text-xs font-medium truncate">
+                  {item.title}
+                </p>
+                <p className="text-[#210303] font-montserrat text-sm font-bold truncate">
+                  {item.subtitle}
+                </p>
+                <div className="flex items-center gap-1">
+                  <img src={locationIcon} alt="location" className="w-3 h-3 opacity-70" />
+                  <span className="text-[#4A4A4A] font-montserrat text-xs truncate">{item.location}</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Load More Button */}
-        <div className="mt-[35.5px] flex justify-center">
-          <button className="inline-flex h-[60px] px-[44px] py-[20px] justify-center items-center gap-[10px] rounded-[10px] bg-[#121212] text-white font-montserrat text-[20px] font-medium leading-[110%] hover:bg-[#333] transition-colors">
+        <div className="mt-8 flex justify-center">
+          <button className="px-8 py-3 rounded-lg bg-[#121212] text-white font-montserrat text-sm font-medium hover:bg-[#333] transition-colors">
             Load More
           </button>
         </div>
